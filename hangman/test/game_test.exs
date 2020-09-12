@@ -18,4 +18,18 @@ defmodule GameTest do
       assert {^game, _} = Game.make_move(game, "asdf")
     end
   end
+
+  test "expects first time a letter is used it wont be used" do
+    game = Game.new_game()
+    {game, _tally} = Game.make_move(game, "x")
+    assert game.game_state != :already_used
+  end
+
+  test "expects second time a letter is used it will be used" do
+    game = Game.new_game()
+    {game, _tally} = Game.make_move(game, "x")
+    assert game.game_state != :already_used
+    {game, _tally} = Game.make_move(game, "x")
+    assert game.game_state == :already_used
+  end
 end
