@@ -16,6 +16,7 @@ defmodule GallowsWeb.HangmanController do
 
   def make_move(conn, params) do
     guess = params["make_move"]["guess"]
+
     tally =
       conn
       |> get_session(:game)
